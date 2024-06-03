@@ -1,0 +1,18 @@
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# to skip locl.hcl for now
+*.terraform.*
+
+# to skip MacOS file found after creating .bicep
+.DS_Store
+
+# plan files (optional)
+planout
+
+# Personal Guide
+*Guide.docx
