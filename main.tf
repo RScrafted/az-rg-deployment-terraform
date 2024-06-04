@@ -10,7 +10,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "example_rg" {
-  name     = "example_rg"
-  location = "East US" # Instead of Display name, otherway to write is just the name viz eastus in this case.
+resource "azurerm_resource_group" "RGDeployment-Test" {
+  name     = var.azurerm_resource_group
+  location = var.azurerm_location
 }

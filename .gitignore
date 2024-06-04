@@ -14,8 +14,14 @@
 # plan files (optional)
 planout
 
+# save the terraform plan as tfplan.out
+tfplan.out
+
 # Personal Guide
 *Guide.docx
+
+# ignore graph file
+*.dot
 
 #Flowchart
 *.drawio
