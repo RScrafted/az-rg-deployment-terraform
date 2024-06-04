@@ -1,27 +1,61 @@
-# Azure Resource Group Deployment with Terraform
+### Resource Group Deployment using Terraform
 
-## Overview
-This project demonstrates a simple Azure deployment using Terraform. The main objective is to create an Azure Resource Group using Terraform, showcasing the basics of infrastructure as code (IaC) and how to integrate it with Azure.
+---
 
-## Prerequisites
-- [Terraform](https://www.terraform.io/downloads.html) (v3.0.0 or higher)
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) (for authentication)
-- [Visual Studio Code](https://code.visualstudio.com/) with the [Terraform extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
+#### Project Overview
 
-## Project Structure
+This project demonstrates the deployment of an Azure Resource Group using Terraform. It includes a PowerShell script to run terraform deployment process and a GNU General Public License.
+
+#### Prerequisites
+
+Before using the Terraform configuration, ensure you have the following installed:
+
+1. **Terraform**: Download and install from [terraform.io](https://www.terraform.io/downloads.html).
+2. **Azure CLI**: Download and install from [docs.microsoft.com](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+3. **Git**: Download and install from [git-scm.com](https://git-scm.com/).
+4. **PowerShell**: Available by default on Windows; for other operating systems, download from [Microsoft](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell).
+
+---
+
+### Project Structure
+
 ```
 azure-deployment-terraform/
 │
 ├── README.md
 ├── main.tf
+├── variables.tf
+├── outputs.tf
 ├── Script.ps1
+├── license.md
 └── .gitignore
 ```
 
-## Terraform Configuration
+---
 
-### Providers and Resources
-The configuration file `main.tf` contains the necessary code to create an Azure Resource Group. Here’s a breakdown of the code:
+### Terraform Configurations
+
+#### `variables.tf`
+
+This file defines the input variables used in the Terraform configuration.
+
+```hcl
+variable "azurerm_resource_group" {
+  description = "The name of the resource group"
+  type        = string
+  default     = "RGDeployment-Test"
+}
+
+variable "azurerm_location" {
+  description = "The Azure region in which resources will be provisioned"
+  type        = string
+  default     = "eastus"
+}
+```
+
+#### `main.tf`
+
+This file defines the provider and the resources to be created.
 
 ```hcl
 terraform {
@@ -37,72 +71,94 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "example_rg" {
-  name     = "example_rg"
-  location = "East US" # Instead of the display name, you can use the name "eastus"
+resource "azurerm_resource_group" "RGDeployment-Test" {
+  name     = var.azurerm_resource_group
+  location = var.azurerm_location
 }
 ```
 
-### Explanation
+##### Explanation
 - **terraform block**: Specifies the required provider (AzureRM) and its version.
 - **provider "azurerm"**: Configures the AzureRM provider.
-- **resource "azurerm_resource_group" "example_rg"**: Defines the Azure Resource Group resource with its name and location.
+- **resource "azurerm_resource_group" "RGDeployment-Test"**: Defines the Azure Resource Group resource with its name and location.
 
-## Steps to Deploy
+#### `outputs.tf`
 
-### 1. Clone the Repository
-```sh
-git clone https://github.com/your-username/az-rg-deployment-terraform.git
-cd azure-deployment-terraform
+This file defines the outputs for the Terraform configuration.
+
+```hcl
+output "resource_group_name" {
+  value = "The name of the provisioned resource group is: ${azurerm_resource_group.RGDeployment-Test.name}"
+}
 ```
 
-### 2. Authenticate with Azure
-Ensure you are authenticated with Azure CLI:
-```sh
-az login
-```
+---
 
-### 3. Initialize Terraform
-Initialize the project directory and download the necessary provider plugins:
-```sh
-terraform init
-```
+### Steps to Deploy
 
-### 4. Plan the Deployment
-Generate and show an execution plan:
-```sh
-terraform plan
-```
+1. **Clone the Repository**:
+   ```sh
+   git clone https://github.com/your-username/resource-group-deployment.git
+   cd resource-group-deployment
+   ```
 
-### 5. Apply the Configuration
-Apply the changes to reach the desired state of the configuration:
-```sh
-terraform apply
-```
-Type `yes` when prompted to confirm the deployment.
+2. **Configure Azure CLI**:
+   Ensure you are logged in to Azure CLI and set the appropriate subscription:
+   ```sh
+   az login
+   az account set --subscription "your-subscription-id"
+   ```
 
-### 6. Verify the Deployment
-You can verify the creation of the Resource Group via the Azure Portal or using Azure CLI:
-```sh
-az group show --name example_rg
-```
-or use terraform command to verify most recent deployment:
-```sh
-terraform show
-```
+3. **Run the commands from PowerShell Script (using F8 shourcut)**:
+   The provided `Script.ps1` provides the Terraform commands in sequential process. Open PowerShell and navigate to the project directory, then run each one by one:
+   ```sh
+   .\Script.ps1
+   ```
 
-## Cleanup
-To remove the resources created by this project:
+   The script will:
+   - Initialize the Terraform working directory.
+   - Validate the configuration.
+   - Create a plan for the deployment.
+   - Apply the plan (provisioning the resources).
+   - Validate the output by showing the resource group details.
+   - Optionally, destroy the resources to clean up.
+
+---
+
+### Cleanup
+
+To destroy the resources and clean up your environment, you can use the `terraform destroy` command. The `Script.ps1` also includes this step at the end:
+
 ```sh
 terraform destroy
 ```
-Type `yes` when prompted to confirm the destruction.
 
-## Contributing
-Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
+---
+
+### Potential Enhancements
+
+This project can be enhanced by automating the addition of more resources into the deployment. Future enhancements may include:
+
+- Adding virtual networks, subnets, and network interfaces.
+- Provisioning virtual machines with specified configurations.
+- Implementing advanced networking features such as network security groups and load balancers.
+- Integrating monitoring and logging solutions like Azure Monitor and Log Analytics.
+
+I am in the process of automating this script to include a Azure Virtual Machine and other related resources in a spearate project. [to be published soon]
+
+I am working on automating this script including a VM and other related resoueces. [to be puublished soon]
+---
+
+### Contributing
+
+Feel free to fork this repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change. I have started a discussion, and everyone can bring ideas there.
+
+---
 
 ## Acknowledgements
 - [Terraform Documentation](https://www.terraform.io/docs/providers/azurerm/)
 - [Azure Documentation](https://docs.microsoft.com/en-us/azure/)
+- **PowerShell**: Scripting language used for automation.
+- **GitHub**: Platform for version control and collaboration.
 
 ---
