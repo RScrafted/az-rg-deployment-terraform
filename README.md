@@ -135,7 +135,9 @@ terraform destroy
 
 ---
 
-### Potential Enhancements
+### Potential Enhancements [Update 06-Jun-2024]
+
+Following projected enhancements completed - Please visit my [terraform-azure-vm-automation](https://github.com/RScrafted/terraform-azure-vm-automation) repository.
 
 This project can be enhanced by automating the addition of more resources into the deployment. Future enhancements may include:
 
@@ -146,7 +148,7 @@ This project can be enhanced by automating the addition of more resources into t
 
 I am in the process of automating this script to include a Azure Virtual Machine and other related resources in a spearate project. [to be published soon]
 
-I am working on automating this script including a VM and other related resoueces. [to be puublished soon]
+(~~) I am working on automating this script including a VM and other related resoueces. (~~) [Updated](https://github.com/RScrafted/terraform-azure-vm-automation)
 ---
 
 ### Contributing
