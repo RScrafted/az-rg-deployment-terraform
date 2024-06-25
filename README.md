@@ -127,11 +127,11 @@ Refer to my detailed steps [Guide](https://github.com/RScrafted/guide-how-to-git
 
 ### Cleanup
 
-To destroy the resources and clean up your environment, you can use the `terraform destroy` command. The `Script.ps1` also includes this step at the end:
+To destroy the resources and clean up your environment, use the `terraform destroy` command. The `Script.ps1` also includes this step at the end:
 
 ```sh
 terraform destroy
-```
+```s
 
 ---
 
