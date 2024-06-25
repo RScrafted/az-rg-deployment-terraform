@@ -113,9 +113,7 @@ Refer to my detailed steps [Guide](https://github.com/RScrafted/guide-how-to-git
 
 3. **Run the commands from PowerShell Script (using F8 shourcut)**:
    The provided `Script.ps1` provides the Terraform commands in sequential process. Open PowerShell and navigate to the project directory, then run each one by one:
-   ```sh
-   .\Script.ps1
-   ```
+   
 
    The script will:
    - Initialize the Terraform working directory.

@@ -6,7 +6,7 @@ terraform plan
 terraform apply # type yes
 
 # Output validation
-az group show --name example_rg
+az group show --name RGDeployment-Test
 
 # Final phase
 terraform destroy
