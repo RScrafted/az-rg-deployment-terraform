@@ -1,4 +1,4 @@
-# Local .terraform directories
+# local .terraform directories
 **/.terraform/*
 
 # .tfstate files
@@ -11,17 +11,21 @@
 # to skip MacOS file found after creating .bicep
 .DS_Store
 
-# plan files (optional)
+# plan files (optional). To save plan before destroy
 planout
 
 # save the terraform plan as tfplan.out
 tfplan.out
 
-# Personal Guide
-*Guide.docx
+# ignore personal notes or learning
+*.docx
+*.txt
 
 # ignore graph file
 *.dot
 
-#Flowchart
+# ignore flowcharts
 *.drawio
+
+# ignore Visual Studio Code customization
+.vscode

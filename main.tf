@@ -11,6 +11,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "RGDeployment-Test" {
-  name     = var.azurerm_resource_group
-  location = var.azurerm_location
+  name     = var.resource_group_name
+  location = var.location
+  tags     = var.tags
 }
