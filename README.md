@@ -131,7 +131,7 @@ To destroy the resources and clean up your environment, use the `terraform destr
 
 ```sh
 terraform destroy
-```s
+```sh
 
 ---
 
